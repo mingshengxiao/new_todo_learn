@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>前端面试相关</title>
+	<meta name="keyword" content="前端 面试">
+</head>
+<body>
+<script type="text/javascript">
+	// 变量作用域问题
+	function f1() {
+		innerVal = 'inner';
+	}
+	f1();
+	console.log(innerVal);
+
+	var scope = "global";
+	function f2() {
+		console.log(scope);
+		var scope = 'local';
+		console.log(scope);
+	}
+	f2();
+
+	function outer() {
+		var test = 'outer';
+		function inner() {
+			return test;
+		}
+		return inner;
+	}
+	var fn = outer();
+	console.log(fn());
+
+	var name = 'the window';
+	var object = {
+		name: 'my object',
+		getNameFunc: function() {
+			return function() {
+				return this.name;
+			};
+		}
+	};
+	console.log(object.getNameFunc()());
+
+	// localStorage
+	window.onload = function() {
+		var storage = null;
+		if(window.localStorage) {
+			storage = window.localStorage;
+			storage.setItem("name", "rick");
+			alert(storage.getItem('name'));
+		}
+	}
+</script>
+</body>
+</html>

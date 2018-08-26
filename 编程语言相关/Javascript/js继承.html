@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ES6继承</title>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+	ES6继承
+	class Animal {
+		constructor() {
+			this.age = '100'
+		}
+	}
+
+	class People extends Animal {
+		constructor(contens={}) {
+			super();
+			this.name = contens.name;
+			this.family = contens.family;
+		}
+		sayHi() {
+			console.log(`hello ${this.name} ${this.family} ${this.age}`);
+		}
+	}
+
+	let boy = new People({
+		name: 'xiao',
+		family: 'test'
+	})
+
+	console.log(boy.sayHi());
+	console.log(Animal.prototype.constructor === Animal);
+	*/
+	
+	// es5继承
+	function MyExample() {
+		this.isTrue = true;
+	}
+
+	MyExample.prototype.getTrue = function() {
+		return this.isTrue;
+	}
+
+	MyExample();
+	console.log(MyExample.getTrue);  // undefined
+
+	function Test2() {}
+
+	Test2.prototype = new MyExample;
+
+	var example = new MyExample();
+	console.log(example.getTrue());
+	console.log(example);
+
+	var test = new Test2();
+	console.log(test);
+
+	function Animal(name) {
+		this.name = name || 'Animal';
+		this.age = 31;
+		// 实例方法
+		this.sleep = function() {
+			console.log(this.name + '正在睡觉!');
+		}
+	}
+
+	// 原型方法
+	Animal.prototype.eat = function(food) {
+		console.log(this.name + '正在吃: ' + food);
+	}
+
+	// 原型链继承
+	/*
+	js中每个对象均有一个隐藏的__proto__属性，一个实例化对象的__proto__属性指向其类的prototype方法，而这个prototype方法又可以被赋值成另一个实例化对象，这个对象的__proto__又需要指向其类，由此形成一条链。
+	特点：1、非常纯粹的继承关系，实例是子类的实例，也是父类的实例
+		 2、父类新增原型方法/原型属性，子类都能访问
+		 3、简单、易于实现
+	缺点：1、要想为子类新增属性和方法，必须要在new Animal()这样的语句之后执行，不能放在构造器中
+		 2、无法实现多继承
+		 3、来自原型对象的引用属性是所有实例共享的
+		 4、创建子类实例时，无法向父类构造函数传参
+	*/
+	function Cat() {
+	}
+
+	Cat.prototype = new Animal();
+	Cat.prototype.name = 'cat';
+
+	var cat = new Cat();
+	cat.age = 34;
+	console.log(cat.name);
+	console.log(cat.age);
+	cat.eat('fish');
+	cat.sleep();
+
+	function Dog(){
+	}
+
+	Dog.prototype = new Animal();
+	Dog.prototype.name = 'dog';
+
+	var dog = new Dog();
+	dog.age = 33;
+	console.log(dog.name);
+	console.log(dog.age);
+
+	// 构造继承
+	/*
+	使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类
+	特点： 1、创建子类实例时，可以向父类传递参数
+		  2、可以实现多继承（call多个父类对象）
+	缺点： 1、实例并不是父类的实例，只是子类的实例
+		  2、只能继承父类的实例属性和方法，不能继承原型属性和方法
+		  3、无法实现函数复用，每个子类都有父类实例函数的副本，影响性能
+	*/
+	function Fish(name) {
+		Animal.call(this);
+		this.name = name || 'Tom';
+	}
+
+	var fish = new Fish('Ty');
+	console.log(fish.name);
+	console.log(fish instanceof Animal);  // false
+	console.log(fish instanceof Fish);  // true
+
+	// 实例继承
+	/*
+	为父类实例添加新特性，作为子类实例返回
+	特点： 1、不限制调用方式，不管是new 子类()还是子类(),返回的对象具有相同的效果
+	确定： 1、实例是父类的实例，不是子类的实例
+		  2、不支持多继承
+	*/
+	function Cat1(name) {
+		var instance = new Animal();
+		instance.name = name || 'Tom';
+		return instance;
+	}
+
+	var cat = new Cat1();
+	console.log(cat.name);
+	cat.eat('fish');
+	console.log(cat instanceof Animal);  // true
+	console.log(cat instanceof Cat1);  // false
+
+	// 组合继承
+	/*
+	通过调用父类构造，继承父类的属性并保留传参的有点，然后通过将父类实例作为子类原型，实现函数复用
+	*/
+	function Cat2(name) {
+		Animal.call(this);
+		this.name = name || 'Ton';
+	}
+
+	Cat2.prototype = new Animal();
+
+	// Cat2.prototype.constructor =Cat;
+
+	var cat = new Cat2();
+	console.log(cat.name);
+
+</script>
+</body>
+</html>

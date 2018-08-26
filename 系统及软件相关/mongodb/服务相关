@@ -1,0 +1,1 @@
+服务启动与关闭：sudo service mongodb stop 　　sudo service mongodb start

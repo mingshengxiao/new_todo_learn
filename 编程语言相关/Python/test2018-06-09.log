@@ -1,0 +1,4 @@
+[2018-06-09 17:52:00,349] - logging日志.py[line:21] -fuc:<module>-CRITICAL:1
+[2018-06-09 17:52:00,349] - logging日志.py[line:22] -fuc:<module>-ERROR:2
+[2018-06-09 17:52:00,349] - logging日志.py[line:23] -fuc:<module>-WARNING:3
+[2018-06-09 17:52:00,349] - logging日志.py[line:24] -fuc:<module>-INFO:4

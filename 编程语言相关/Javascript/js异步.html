@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript异步任务</title>
+</head>
+<body>
+	<h5>javascript是单线程的，任务是异步执行的</h5>
+
+<script type="text/javascript">
+	window.onload = function() {
+		console.log(1);
+		setTimeout(function() {
+			console.log(2)
+		},0);
+		console.log(3);
+
+		console.log('another');
+
+		setTimeout(function() {
+			console.log('定时器开始！');
+		});
+		new Promise(function(resolve) {
+			console.log('for 循环');
+
+			for(var i = 0; i < 1000; i ++){
+				i == 99 && resolve();
+			}
+		}).then(function() {
+			console.log('执行then函数');
+		});
+		console.log('完毕');
+	}
+</script>
+</body>
+</html>

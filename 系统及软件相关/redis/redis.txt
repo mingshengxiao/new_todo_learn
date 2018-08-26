@@ -1,0 +1,2 @@
+启动redis服务：redis-server
+链接redis：redis-cli

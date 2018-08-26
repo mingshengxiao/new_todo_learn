@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js函数参数</title>
+</head>
+<body>
+	<script  type="text/javascript" charset="utf-8" async defer>
+		window.onload = function() {
+			// 默认参数
+			function hello(name='xiao') {
+				console.log(`Hello ${name}`);
+			}
+
+			hello();
+
+			// 不定参数
+			function hello1(...name) {
+				console.log(name.reduce((a, b) => `Hello ${a} ${b}`));
+			}
+
+			hello1('xiao', 'ming');
+
+			// 扩展参数
+			let name = ['xiao', 'mi'];
+			function hello2(name1, name2) {
+				console.log(`Hello ${name1} ${name2}`);
+			}
+
+			hello2(...name);
+		}
+	</script>
+</body>
+</html>

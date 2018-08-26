@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五子棋</title>
+    <meta name="discription" content="五子棋">
+    <meta name="viewpoint" content="width=device-width,height=device-height,initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main {
+            width: 100%;
+        }
+
+        canvas {
+            float: left;
+            margin-left: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <canvas id="sheet-pan" width="500" height=500"></canvas>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var done_sheet = [];
+            var obj = document.getElementById('sheet-pan');
+            var ctx = obj.getContext('2d');
+            ctx.strokeStyle = '#666';
+            draw(ctx, done_sheet);
+
+            obj.addEventListener('click', function(e) {
+                e = e || e.event;
+                let user = new User_draw();
+                user.cal_point(e, ctx, done_sheet);
+                let promise =  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve()
+                    }, 1000);
+                });
+
+                promise.then(() => {
+                    let sys = new Sys_draw();
+                    sys.cal_point(ctx, done_sheet);
+                }).catch((error) => {
+                    console.log(error);
+                })
+            });
+
+        };
+
+
+        // 画棋盘
+        function draw(ctx, done_sheet) {
+            // for(let i = 0;i <= 500; i += 20) {
+            //     ctx.moveTo(i, 0);
+            //     ctx.lineTo(i, 500);
+            //     ctx.stroke();
+            // }
+            // for(let j = 0; j <= 500; j += 20) {
+            //     ctx.moveTo(0, j);
+            //     ctx.lineTo(500, j);
+            //     ctx.stroke();
+            // }
+
+            let m = 0;
+
+            for(let i = 0; i < 500; i += 20) {
+                done_sheet.push([]);
+                for(let j =0; j < 500; j += 20) {
+                    ctx.rect(j, i, j + 20, i + 20);
+                    ctx.stroke();
+                    // debugger;
+                    done_sheet[m].push(0);
+                }
+                m += 1;
+            }
+        }
+
+        // 画棋子
+        function Draw_sheet(x, y) {
+            this.x = x;
+            this.y = y;
+            this.white = '#f00';
+            this.blank = '#000';
+            // 纠正棋子落点位置
+            this.round_point = function() {
+                let more_x = this.x % 20;
+                let more_y = this.y % 20;
+                this.x = more_x <= 10 ? this.x - more_x : this.x + 20 - more_x;
+                this.y = more_y <= 10 ? this.y - more_y : this.y + 20 - more_y;
+            }
+        }
+
+        Draw_sheet.prototype.downSheet = function(ctx, flag) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 7, 0, 2 * Math.PI);
+            let sheet_color = flag == 1 ? this.white : this.blank;
+            ctx.fillStyle = sheet_color;
+            ctx.fill();
+        };
+
+        // 玩家棋子
+        function User_draw() {}
+        User_draw.prototype = new Draw_sheet();
+
+        // 计算鼠标点击坐标
+        User_draw.prototype.cal_point = function(e, ctx, done_sheet) {
+            this.x = e.offsetX;
+            this.y = e.offsetY;
+            this.round_point();
+
+            if(done_sheet[this.y / 20][this.x / 20] === 1) {
+                alert('该点已有棋子');
+
+            }else {
+                this.downSheet(ctx, 1);
+
+                done_sheet[this.y / 20][this.x / 20] = 1;
+            }
+        };
+
+        // 系统棋子
+        function Sys_draw() {}
+        Sys_draw.prototype = new Draw_sheet();
+
+        // 系统下棋
+        Sys_draw.prototype.cal_point = function(ctx, done_sheet) {
+            this.x = 1000 * (Math.random().toFixed(2) / 2);
+            this.y = 1000 * (Math.random().toFixed(2) / 2);
+            this.round_point();
+
+            if(done_sheet[this.y / 20][this.x / 20] === 1) {
+                alert('该点已有棋子');
+            }else{
+                this.downSheet(ctx, 0);
+
+                done_sheet[this.y / 20][this.x / 20] = 1;
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+引用类型：Object,Array,Date,RegExp,Function,Math,Global,Error---保存在堆内存中
+基本类型：String,boolean,null,undefined,number,symbol   ---保存在栈内存中
+
+浅拷贝：拷贝引用，拷贝后的引用都是指向同一个对象的实例，彼此操作互相影响。

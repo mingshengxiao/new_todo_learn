@@ -1,0 +1,19 @@
+网页动画效果库： GSAP、Anime.js、Wicked CSS、Animate CSS、Tuesday、CSShake、Mo.js、Animate Plus、Bounce.js、Magic
+
+AJAX调用Javascript库：Fetch API、Axios、SuperAgent
+
+UI库：WeUI-- 同微信原生视觉体验一致的基础样式库
+     SUI Mobile--
+     Amaze--  移动优先
+     JQuery mobile--
+     Framework7-- 只专注于IOS、Google Material设计提供最好的体验
+     cube-ui-- 基于Vue.js的移动端组件库
+     Mint UI-- 基于vue的移动端组件库
+     Weex UI-- vue
+     EasyUI --
+     ElementUI-- vue
+     iviewui-- vue
+     Vuetify-- vue
+
+
+图标库：Feature Icons、Linea、Octicons、Font Awesome、Material Icons

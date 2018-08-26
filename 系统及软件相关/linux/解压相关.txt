@@ -1,0 +1,7 @@
+解压zip文件：unzip file
+解压rar文件：安装unrar，unrar x file
+解压xz文件：xz -d file
+解压tar文件：tar -zxvf file
+
+压缩tar文件：tar -cvf  filename
+压缩xz文件：xz -z file

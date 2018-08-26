@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async_await</title>
+</head>
+<body>
+<script>
+    // async function bascDemo() {
+    //     let result = await Math.random();
+    //     console.log(result);
+    // }
+    //
+    // bascDemo();
+    //
+    // function sleep(second) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve('sleeping....');
+    //         }, second)
+    //     })
+    // }
+    //
+    // function normalFunc() {
+    //     console.log('normal');
+    // }
+    //
+    // async function asyncFunc() {
+    //     await normalFunc();
+    //     console.log(new Date());
+    //     let result = await sleep(2000);
+    //     console.log(new Date());
+    //     console.log(typeof(result));
+    //     console.log(result);
+    // }
+    //
+    // asyncFunc();
+
+    let promise = function(val) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(() => {
+                console.log(val + new Date());
+                resolve(val);
+            }, 2000)
+        });
+    };
+
+    let gen = function* () {
+        let p1 = yield promise('1');
+        let p2 = yield promise('2');
+    }
+
+    let genF = gen();
+
+    genF.next();
+    genF.next();
+
+
+
+</script>
+</body>
+</html>

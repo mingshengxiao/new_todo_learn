@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>夏令时</title>
+</head>
+<body>
+<script type="text/javascript">
+	// var currentOffset = today.getTimezoneOffset(); // 获取时区的偏移量
+
+	Date.prototype.stdTimezoneOffset = function() {
+		var jan = new Date(this.getFullYear(), 0, 1);
+		var jul = new Date(this.getFullYear(), 6, 1);
+		return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+	}
+
+	Date.prototype.dst = function() {
+		return this.getTimezoneOffset() < this.stdTimezoneOffset();
+	}
+
+	var today = new Date();
+	alert('start');
+	if (today.dst()) {
+		alert('Daylight savings time!');
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>for in 循环</title>
+</head>
+<body>
+<script type="text/javascript">
+	var obj1 = {
+		'name': '小x',
+		'fullname': 'xyz'
+	}
+
+	for(name in obj1){
+		console.log(name, obj1[name])  // name 小x   fullname xyz
+	}
+
+	// 使用for in 循环的副作用
+	// 会将原型对象中的所有属性都遍历出来
+	var obj2 = {
+		'name': '小x',
+		'fullname': 'xyz'
+	}
+	function ChangeName() {
+		this.age = 19
+	}
+
+	ChangeName.prototype = obj2;
+
+	var obj3 = new ChangeName();
+
+	for(name in obj3){
+		if(obj3.hasOwnProperty(name)){   // 排除从原型中继承的属性
+			console.log(name, obj3[name]) // age  19 
+		}
+		console.log(name, obj3[name])  // age  19   name 小x   fullname xyz
+	}
+</script>
+</body>
+</html>

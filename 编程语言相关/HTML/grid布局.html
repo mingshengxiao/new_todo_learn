@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>grid布局</title>
+	<style type="text/css">
+	/* 在 网格容器(Grid Container) 上使用column，float，clear， vertical-align 不会产生任何效果。 */
+	/* fr 单元允许你用等分网格容器剩余可用空间来设置 网格轨道(Grid Track) 的大小  */
+		.wrapper {
+			display: grid;
+			grid-template-columns: 33% 100px 100px;
+			grid-template-rows: 100px 100px 100px;
+		}
+		.wrapper div {
+			border:  1px solid red;
+		}
+
+		.item1 {
+			grid-column-start: 1; /*从第一个网格线开始*/
+			grid-column-end: 4;  /* 到第四个网格线结束 */
+		}
+		.item2 {
+			grid-column: 1/4;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="item1">1</div>
+		<div class="item2">2</div>
+		<div class="item3">3</div>
+		<div class="item4">4</div>
+		<div class="item5">5</div>
+		<div class="item6">6</div>
+	</div>
+</body>
+</html>

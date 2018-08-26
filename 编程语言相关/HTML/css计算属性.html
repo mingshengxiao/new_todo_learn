@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>css 计算属性</title>
+	<style rel="stylesheet" type="text/css">
+		.choose {
+			counter-reset: fruit;
+		}
+		.choose input:checked {
+			/* 属性创建或重置一个或多个计数器值*/
+			counter-increment: fruit;
+		}
+
+		.blue {
+			color: transparent;
+			font-size: 30px;
+			text-shadow: 0 0 2px rgba(0,0,0,.9);
+		}
+
+		.count:before {
+			content: counter(fruit);
+		}
+
+	</style>
+</head>
+<body>
+	<div class="choose">
+		<label><input type="checkbox" name="">苹果</label>
+		<label><input type="checkbox" name="">香蕉</label>
+		<label><input type="checkbox" name="">梨子</label>
+		<label><input type="checkbox" name="">葡萄</label>
+		<label><input type="checkbox" name="">西瓜</label>
+		<label><input type="checkbox" name="">椰子</label>
+	</div>
+	<p class="blue">选择了<span class="count"></span></p>
+</body>
+</html>
