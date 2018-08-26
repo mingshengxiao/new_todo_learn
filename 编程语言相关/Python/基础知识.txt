@@ -6,3 +6,5 @@ is比较的是内存地址，==比较的值相等；
 酸洗和去除：Pickle模块接受任何Python对象并将其转换为字符串表示形式，并使用dump函数将其转储到文件中，此过程称为pickling.
           从存储的字符串中检索原始Python对象的过程称为unpickling
 
+Python框架：Django、Flask、Diesel、Kartograph.py、Cubes、Web2py、Pulsar、Dpark、Falcon、Tornado、Scrapy
+
