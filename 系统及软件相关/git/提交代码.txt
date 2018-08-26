@@ -12,3 +12,4 @@
 创建分支：git branch name
 切换分支：git checkout name
 查看当前分支状态：git status
+提交代码到远程：git push origin name
