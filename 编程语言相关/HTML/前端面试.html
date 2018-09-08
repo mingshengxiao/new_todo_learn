@@ -418,6 +418,17 @@ Canvas 是逐像素进行渲染的。在 canvas 中，一旦图形被绘制完�
 		<li>
 			<h4>浏览器缓存</h4>
 		</li>
+		<li>
+			<h4>Cookie，LocalStorage，SessionStorage</h4>
+			<ol>
+				<li>Cookie:大小受限制，4KB，Cookie在受同源限制，在服务器和客户端之间传递，Coolie的内容主要包括：名字、
+					值，过期时间，路径和域；
+				</li>
+				<li>LocalStorage:持久化的存储方式，在隐私模式下不可读取，不能被爬虫爬取</li>
+				<li>SessionStorage:作用域为窗口级别，会话结束后数据被销毁</li>
+				<li>本地存储方式====setItem(key,value):保存数据；getItem(key):获取数据；removeItem(key,value):删除数据</li>
+			</ol>
+		</li>
 	</ul>
 </body>
 </html>
