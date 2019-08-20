@@ -3,5 +3,27 @@
 解压xz文件：xz -d file
 解压tar文件：tar -zxvf file
 
+tar命令可用于处理后缀名为tar,tar.gz,tgz,tar.Z,tar.bz2的文件
+tar命令的参数:
+
+-c 建立新的压缩文件
+-r 添加文件到已经压缩的文件
+-u 添加改变了和现有的文件到已经存在的压缩文件(?)
+-x 从压缩文件中提取内容
+-t 显示压缩文件的内容
+-z 支持gzip解压文件
+-j 支持bzip2解压文件
+-v 显示操作过程
+-k 保留原有文件不覆盖
+-C 切换到指定目录
+-f 指定压缩文件
+
+--delete 删除包中的文件
+--strip-components 去除目录
+--add-file 向包中添加文件
+
+eg: tar -zcvf test.tar.gz test.log --remove-files
+
+
 压缩tar文件：tar -cvf  filename
 压缩xz文件：xz -z file
